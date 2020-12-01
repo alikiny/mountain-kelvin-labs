@@ -1,10 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import './web-socket/socket'
+
 import Header from './components/header'
 import Button from './components/button'
 import {SITEKEY} from './web-socket/socket'
+import {switchScene} from './web-socket/socket'
+
 const axios = require('axios');
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
     })
     .then((res)=>{
       console.log('Scene activated: '+sceneId)
+      switchScene()
+
     })
     .catch(e=>{
       console.log(e)
