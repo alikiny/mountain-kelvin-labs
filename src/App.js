@@ -4,28 +4,30 @@ import './App.css';
 
 import Header from './components/header'
 import Button from './components/button'
-import {SITEKEY} from './web-socket/socket'
-import {switchScene} from './web-socket/socket'
+import { SITEKEY } from './web-socket/socket'
+import { switchScene } from './web-socket/socket'
 
 const axios = require('axios');
 
-const App=()=> {
-  const onActivateScene=(sceneId)=>{
+const App = () => {
+  const onActivateScene = (sceneId) => {
     axios.post(`https://api.mountkelvin.com/v1/site/${SITEKEY}/applyScene`,
-    {
-      id: sceneId
-    })
-    .then((res)=>{
-      console.log('Scene activated: '+sceneId)
-      switchScene(sceneId)
+      {
+        id: sceneId
+      })
+      .then((res) => {
+        console.log('Scene activated: ' + sceneId)
 
-    })
-    .catch(e=>{
-      console.log(e)
-    })
+        switchScene(sceneId)
+
+
+      })
+      .catch(e => {
+        console.log(e)
+      })
   }
 
-  
+
 
   return (
     <div className="App">
@@ -35,13 +37,13 @@ const App=()=> {
         <div className="btn-root mt-5">
 
 
-          <Button image='circle.jpg' buttonFunction={()=>onActivateScene(process.env.ALLON)} text="All on" />
+          <Button image='circle.jpg' buttonFunction={() => onActivateScene(process.env.ALLON)} text="All on" />
 
-          <Button image='circle.jpg' buttonFunction={()=>onActivateScene(process.env.ALLOFF)} text="30%" />
+          <Button image='circle.jpg' buttonFunction={() => onActivateScene(process.env.ALLOFF)} text="30%" />
 
-          <Button image='circle.jpg' buttonFunction={()=>onActivateScene(process.env.NIGHT)} text="70%" />
+          <Button image='circle.jpg' buttonFunction={() => onActivateScene(process.env.NIGHT)} text="70%" />
 
-          <Button image='circle.jpg' buttonFunction={()=>onActivateScene(process.env.EVENING)} text="All off" />
+          <Button image='circle.jpg' buttonFunction={() => onActivateScene(process.env.EVENING)} text="All off" />
 
 
         </div>
