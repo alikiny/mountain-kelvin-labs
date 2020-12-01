@@ -9,9 +9,7 @@ import {switchScene} from './web-socket/socket'
 
 const axios = require('axios');
 
-function App() {
-
-  
+const App=()=> {
   const onActivateScene=(sceneId)=>{
     axios.post(`https://api.mountkelvin.com/v1/site/${SITEKEY}/applyScene`,
     {
@@ -19,7 +17,7 @@ function App() {
     })
     .then((res)=>{
       console.log('Scene activated: '+sceneId)
-      switchScene()
+      switchScene(sceneId)
 
     })
     .catch(e=>{
@@ -37,13 +35,13 @@ function App() {
         <div className="btn-root mt-5">
 
 
-          <Button image='circle.jpg' click={onActivateScene('allOn')} text="All on" />
+          <Button image='circle.jpg' buttonFunction={()=>onActivateScene(process.env.ALLON)} text="All on" />
 
-          <Button image='circle.jpg' click={onActivateScene('30')} text="30%" />
+          <Button image='circle.jpg' buttonFunction={()=>onActivateScene(process.env.ALLOFF)} text="30%" />
 
-          <Button image='circle.jpg' click={onActivateScene('70')} text="70%" />
+          <Button image='circle.jpg' buttonFunction={()=>onActivateScene(process.env.NIGHT)} text="70%" />
 
-          <Button image='circle.jpg' click={onActivateScene('allOff')} text="All off" />
+          <Button image='circle.jpg' buttonFunction={()=>onActivateScene(process.env.EVENING)} text="All off" />
 
 
         </div>

@@ -1,7 +1,7 @@
 const io = require('socket.io-client')
-export const SITEKEY = 'needed-endurable-plough'
+export const SITEKEY = process.env.SITEKEY
 
-export const switchScene=()=>{
+export const switchScene=(sceneId)=>{
 
     const socket = io.connect('https://api.mountkelvin.com', {
     reconnectionDelay: 1000,
@@ -20,7 +20,7 @@ export const switchScene=()=>{
         socket.emit('apply/scene', {
             siteKey: SITEKEY,
             data: {
-              id: '<sceneId>',
+              id: sceneId,
             },
           })
     
